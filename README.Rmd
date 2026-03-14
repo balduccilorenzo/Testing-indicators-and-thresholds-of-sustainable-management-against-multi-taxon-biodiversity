@@ -1,0 +1,161 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+
+# Testing indicators and thresholds of sustainable management against multi-taxon biodiversity in Mediterranean forests
+
+This README file provides instructions for setting up and running the
+analyses for the manuscript.
+
+## 1. System Requirements
+
+-   **Operating System:** The software has been tested on:
+    -   Windows 10 Pro Version 22H2
+-   **R Version:** R version 4.5.1 or higher
+-   **RStudio Version:** RStudio 2025.5.1.513 or higher
+-   **Required R Packages:**
+    -   `tidyverse` (version 2.0.0)
+    -   `gbm` (version 2.2.2)
+    -   `ggBRT` (version 0.0.0.9000)
+    -   `dismo` (version 1.3.16)
+    -   `cowplot` (version 1.2.0)
+    -   `readxl` (version 1.4.5)
+-   **Hardware Requirements:**
+    -   At least 8 GB RAM
+
+## 2. Installation Guide
+
+### Instructions
+
+1.  Install R from [CRAN](https://cran.r-project.org/).
+2.  Install RStudio from
+    [RStudio](https://www.rstudio.com/products/rstudio/download/).
+3.  Download this repository to your local machine.
+4.  Open the R project file (`BRTs.Rproj`)
+
+### Typical Install Time
+
+-   Installation of R, RStudio, and required packages on a typical
+    desktop computer should take approximately 15-30 minutes, depending
+    on internet speed.
+
+## 3. Demo
+
+### Instructions to Run the Demo
+
+1.  Open the R project in RStudio.
+2.  Run the script located in the `scripts` folder named `BRTs.R`.
+3.  The script will install the required packages, load the packages and
+    the data from the `data` folder and generate outputs saved in the
+    `plots` folder.
+
+### Expected Output
+
+-   The script will produce a series of plots that visualize the
+    relationships modeled using boosted regression trees, saved as PNG
+    files in the `plots` folder.
+-   Summary statistics and model performance metrics will be displayed
+    in the R console.
+
+### Expected Run Time
+
+-   The demo script should run in approximately 5 minutes.
+
+## 4. Instructions for Use
+
+### How to Run the Software on Your Data
+
+1.  Place your data files in the `data` folder, ensuring they match the
+    expected format.
+2.  Update the file paths and variable names in the script `BRTs.R`
+    located in the `scripts` folder to correspond to your dataset.
+3.  Run the script in RStudio, and the analysis will proceed using your
+    data.
+
+### Reproduction Instructions (Optional)
+
+To reproduce all quantitative results in the manuscript:
+
+1.  Ensure that the dataset provided in the `data` folder is complete
+    and unaltered.
+2.  Run the main analysis script `BRTs` in the `scripts` folder.
+3.  Outputs will be saved in the `plots` folder.
+
+### Additional Notes
+
+-   Make sure that all paths in the scripts are correctly set to match
+    the structure of the project on your local machine.
+
+## 5. Data Information
+
+### Dataset 1: `data/dataLI.xlsx`
+
+**Description:** This dataset includes information on Epiphytic Lichens
+per sampling unit.
+
+| Variable Name   | Description                                   | Type                      | Unit    |
+| --------------- | --------------------------------------------- | ---------------------     | ------- |
+| `shannon`       | Shannon diversity index of epiphytic lichens  | numeric (continuous)      | —       |
+| `siteID`        | Site identifier                               | categorical               | —       |
+| `CC`            | Canopy cover                                  | numeric (proportion, 0–1) | —       |
+| `IBP_TOT`       | Index of Biodiversity Potential total score   | numeric (index, 0–50)     | —       |
+| `Trems_N_Type`  | Number of Tree-Related Microhabitat types     | integer (count)           | —       |
+| `Trems_Sum`     | Total abundance of Tree-Related Microhabitats | integer (count)           | —       |
+| `BAXCD1–BAXCD6` | Basal area within DBH classes                 | numeric (continuous)      | m² ha⁻¹ |
+
+
+### Dataset 2: `data/dataVP.xlsx`
+
+**Description:** This dataset includes information on Vascular Plants
+per sampling unit.
+
+| Variable Name   | Description                                                     | Type                      | Unit    |
+| --------------- | --------------------------------------------------------------- |-------------------------  | ------- |
+| `PCDSU`         | Relative cover of diagnostic understorey vascular plant species | numeric (proportion, 0–1) | —       |
+| `siteID`        | Site identifier                                                 | categorical               | —       |
+| `M_CC`          | Canopy cover                                                    | numeric (proportion, 0–1) | —       |
+| `IBP_TOT`       | Index of Biodiversity Potential total score                     | numeric (index, 0–50)     | —       |
+| `Trems_N_Type`  | Number of Tree-Related Microhabitat types                       | integer (count)           | —       |
+| `Trems_Sum`     | Total abundance of Tree-Related Microhabitats                   | integer (count)           | —       |
+| `BAXCD1–BAXCD6` | Basal area within DBH classes                                   | numeric (continuous)      | m² ha⁻¹ |
+
+### Dataset 3: `data/dataDA.xlsx`
+
+**Description:** This dataset includes information on Deadwood
+Arthropods per sampling unit.
+
+| Variable Name  | Description                                      | Type / Scale          | Unit |
+| -------------- | ------------------------------------------------ | --------------------- | ---- |
+| `richness`     | Richness of deadwood arthropod functional groups | integer (count)       | —    |
+| `diam`         | Diameter of sampled deadwood fragment            | numeric (continuous)  | cm   |
+| `decay_class`  | Deadwood decay class                             | ordinal (1–5)         | —    |
+| `IBP_TOT`      | Index of Biodiversity Potential total score      | numeric (index, 0–50) | —    |
+| `Trems_N_Type` | Number of Tree-Related Microhabitat types        | integer (count)       | —    |
+| `Trems_Sum`    | Total abundance of Tree-Related Microhabitats    | integer (count)       | —    |
+| `siteID`       | Site identifier                                  | categorical           | —    |
+
+### Dataset 4: `data/dataUA.xlsx`
+
+**Description:** This dataset includes information on Understory
+Arthropods per sampling unit.
+
+| Variable Name   | Description                                         | Type / Scale              | Unit    |
+| --------------- | --------------------------------------------------- | ------------------------- | ------- |
+| `richness`      | Richness of understorey arthropod functional groups | integer (count)           | —       |
+| `siteID`        | Site identifier                                     | categorical               | —       |
+| `M_CC`          | Canopy cover                                        | numeric (proportion, 0–1) | —       |
+| `IBP_TOT`       | Index of Biodiversity Potential total score         | numeric (index, 0–50)     | —       |
+| `Trems_N_Type`  | Number of Tree-Related Microhabitat types           | integer (count)           | —       |
+| `Trems_Sum`     | Total abundance of Tree-Related Microhabitats       | integer (count)           | —       |
+| `BAXCD1–BAXCD6` | Basal area within DBH classes                       | numeric (continuous)      | m² ha⁻¹ |
+| `CC`            | Canopy cover                                        | numeric (proportion, 0–1) | —       |
+| `SC`            | Shrub cover                                         | numeric (proportion, 0–1) | —       |
+| `HC`            | Herb cover                                          | numeric (proportion, 0–1) | —       |
+
+
+## Contact Information
+
+For any questions or issues, please contact Lorenzo Balducci -
+[lorenzo.balducci\@uniroma1.it](mailto:lorenzo.balducci@uniroma1.it){.email}.
